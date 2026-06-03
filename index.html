@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Iker Viña Nieves — Blog Personal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --ink: #1a1209;
@@ -14,15 +14,13 @@
       --accent2: #d4874d;
       --muted: #7a6e5f;
       --border: #c9bfae;
-      --shadow: rgba(26,18,9,0.12);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--paper);
+      background: var(--paper);
       color: var(--ink);
       font-family: 'Space Mono', monospace;
       font-size: 14px;
@@ -30,669 +28,666 @@
       overflow-x: hidden;
     }
 
-    /* Grain overlay */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.6;
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .6;
     }
 
     /* ── HEADER ── */
     header {
       position: relative;
-      padding: 70px 40px 50px;
+      padding: 60px 40px 44px;
       border-bottom: 2px solid var(--ink);
       background: var(--cream);
       overflow: hidden;
     }
-
     header::after {
       content: '';
-      position: absolute;
-      top: 0; right: 0;
+      position: absolute; top: 0; right: 0;
       width: 340px; height: 100%;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 8px,
-        rgba(192,57,43,0.06) 8px,
-        rgba(192,57,43,0.06) 9px
-      );
+      background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(192,57,43,.06) 8px, rgba(192,57,43,.06) 9px);
       pointer-events: none;
     }
-
-    .header-tag {
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-      font-family: 'Space Mono', monospace;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(46px, 7vw, 88px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      position: relative;
-      z-index: 1;
-    }
-
-    header h1 span {
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    .header-sub {
-      margin-top: 18px;
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 480px;
-      font-style: italic;
-    }
-
-    .header-decorline {
-      width: 60px;
-      height: 3px;
-      background: var(--accent);
-      margin-top: 24px;
-    }
+    .header-tag { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .site-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 80px); font-weight: 900; line-height: 1; letter-spacing: -.02em; position: relative; z-index: 1; cursor: pointer; }
+    .site-title span { color: var(--accent); font-style: italic; }
+    .header-sub { margin-top: 14px; font-size: 13px; color: var(--muted); max-width: 480px; font-style: italic; }
+    .header-decorline { width: 60px; height: 3px; background: var(--accent); margin-top: 20px; }
 
     /* ── NAV ── */
     nav {
       background: var(--ink);
-      padding: 0 40px;
       display: flex;
-      gap: 0;
       border-bottom: 2px solid var(--accent);
       overflow-x: auto;
-    }
-
-    nav a {
-      color: var(--paper);
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 16px 22px;
-      display: block;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-
-    nav a:hover { background: var(--accent); color: #fff; }
-
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
       padding: 0 40px;
     }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 0;
-      align-items: start;
+    nav button {
+      color: var(--paper);
+      background: none;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 16px 22px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
     }
+    nav button:hover, nav button.active { background: var(--accent); color: #fff; }
 
-    /* ── MAIN CONTENT ── */
-    main {
-      padding: 60px 50px 60px 0;
-      border-right: 1px solid var(--border);
-    }
+    /* ── LAYOUT ── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+    .grid { display: grid; grid-template-columns: 1fr 300px; gap: 0; align-items: start; }
+    main { padding: 60px 50px 60px 0; border-right: 1px solid var(--border); min-height: 60vh; }
+    aside { padding: 60px 0 60px 40px; }
 
-    /* ── SECTION TITLES ── */
+    /* ── PAGE TRANSITIONS ── */
+    .page { display: none; animation: fadeUp .4s ease both; }
+    .page.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── SHARED TYPOGRAPHY ── */
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 12px;
     }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── FEATURED POST (HERO) ── */
-    .post-hero {
-      margin-bottom: 60px;
-      padding-bottom: 60px;
-      border-bottom: 1px dashed var(--border);
-    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
     .post-meta {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
+      font-size: 11px; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px; display: flex; gap: 16px; align-items: center;
     }
+    .cat { background: var(--accent); color: #fff; padding: 2px 10px; font-size: 10px; }
 
-    .post-meta .cat {
-      background: var(--accent);
-      color: #fff;
-      padding: 2px 10px;
-      font-size: 10px;
-    }
+    .page-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4.5vw, 54px); font-weight: 900; line-height: 1.05; margin-bottom: 22px; }
+    .page-title em { color: var(--accent); font-style: italic; }
+    .page-intro { color: var(--muted); font-size: 13px; line-height: 1.9; max-width: 640px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px dashed var(--border); }
 
-    .post-hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4vw, 46px);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 18px;
-      color: var(--ink);
-    }
-
-    .post-hero h2 em {
-      color: var(--accent2);
-      font-style: italic;
-    }
-
-    .post-hero p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-      max-width: 620px;
-      margin-bottom: 20px;
-    }
-
-    .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 2px;
-      transition: gap 0.2s;
-    }
-
-    .read-more:hover { gap: 16px; }
-
-    /* ── REGULAR POSTS ── */
-    .post-list { display: flex; flex-direction: column; gap: 36px; }
-
-    .post-card {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 24px;
-      padding-bottom: 36px;
-      border-bottom: 1px dashed var(--border);
-      animation: fadeUp 0.5s ease both;
-    }
-
-    .post-card:last-child { border-bottom: none; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .post-card:nth-child(1) { animation-delay: 0.05s; }
-    .post-card:nth-child(2) { animation-delay: 0.15s; }
-    .post-card:nth-child(3) { animation-delay: 0.25s; }
-    .post-card:nth-child(4) { animation-delay: 0.35s; }
-
-    .post-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px;
-      font-weight: 900;
-      color: var(--cream);
-      line-height: 1;
-      text-align: center;
-      padding-top: 4px;
-      -webkit-text-stroke: 1px var(--border);
-    }
-
-    .post-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      color: var(--ink);
-    }
-
-    .post-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    /* ── SIDEBAR ── */
-    aside {
-      padding: 60px 0 60px 40px;
-    }
-
-    .widget {
-      margin-bottom: 50px;
-    }
-
-    /* Profile card */
-    .profile-card {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.15;
-    }
-
-    .profile-avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 28px; font-weight: 900;
-      color: #fff;
-      margin-bottom: 18px;
-      position: relative; z-index: 1;
-    }
-
-    .profile-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 10px;
-    }
-
-    .profile-card p {
-      font-size: 12px;
-      color: rgba(245,239,227,0.65);
-      line-height: 1.8;
-      font-style: italic;
-    }
-
-    .profile-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      margin-top: 24px;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .stat {
-      background: var(--ink);
-      padding: 14px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--accent2);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(245,239,227,0.5);
-    }
-
-    /* Timeline widget */
-    .timeline { list-style: none; position: relative; padding-left: 20px; }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 5px; top: 6px; bottom: 6px;
-      width: 1px;
-      background: var(--border);
-    }
-
-    .timeline li {
-      position: relative;
-      margin-bottom: 22px;
-      padding-left: 18px;
-      font-size: 12px;
-    }
-
-    .timeline li::before {
-      content: '';
-      position: absolute;
-      left: -17px; top: 5px;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--paper);
-    }
-
-    .timeline .tl-year {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .timeline .tl-text {
-      color: var(--ink);
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    /* Tags */
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .tag {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
-    .tag.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-    /* Quote block */
     .pull-quote {
       border-left: 4px solid var(--accent);
-      padding: 20px 24px;
-      background: var(--cream);
-      margin: 40px 0;
+      padding: 20px 24px; background: var(--cream);
+      margin: 36px 0;
       font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      font-style: italic;
-      line-height: 1.6;
-      color: var(--ink);
+      font-size: 17px; font-style: italic; line-height: 1.6;
     }
+    .pull-quote cite { display: block; margin-top: 10px; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-style: normal; color: var(--muted); font-family: 'Space Mono', monospace; }
 
-    .pull-quote cite {
-      display: block;
-      margin-top: 10px;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-style: normal;
-      color: var(--muted);
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); background: none; border: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px; cursor: pointer;
       font-family: 'Space Mono', monospace;
+      transition: gap .2s; margin-bottom: 40px;
     }
+    .back-btn:hover { gap: 14px; }
+
+    /* ── INDEX PAGE ── */
+    .post-hero { margin-bottom: 60px; padding-bottom: 60px; border-bottom: 1px dashed var(--border); }
+    .post-hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 900; line-height: 1.1; margin-bottom: 18px; }
+    .post-hero h2 em { color: var(--accent2); font-style: italic; }
+    .post-hero p { color: var(--muted); font-size: 13px; line-height: 1.9; max-width: 620px; margin-bottom: 16px; }
+
+    .read-more-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); background: none; border: none;
+      border-bottom: 1px solid var(--accent); padding-bottom: 2px;
+      cursor: pointer; font-family: 'Space Mono', monospace;
+      transition: gap .2s;
+    }
+    .read-more-btn:hover { gap: 16px; }
+
+    .post-list { display: flex; flex-direction: column; gap: 36px; }
+    .post-card { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding-bottom: 36px; border-bottom: 1px dashed var(--border); }
+    .post-card:last-child { border-bottom: none; }
+    .post-number { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--cream); line-height: 1; text-align: center; padding-top: 4px; -webkit-text-stroke: 1px var(--border); }
+    .post-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .post-card h3 button { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; background: none; border: none; color: var(--ink); cursor: pointer; text-align: left; line-height: 1.2; padding: 0; transition: color .2s; }
+    .post-card h3 button:hover { color: var(--accent); }
+    .post-card p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+    /* ── ARTICLE BLOCKS ── */
+    .article-block { margin-bottom: 56px; padding-bottom: 56px; border-bottom: 1px dashed var(--border); }
+    .article-block:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+    .article-block h2 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 30px); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .article-block p { color: var(--muted); font-size: 13px; line-height: 1.9; margin-bottom: 14px; }
+    .article-block p:last-child { margin-bottom: 0; }
+    .article-block p strong { color: var(--ink); }
+
+    /* ── STAT STRIP ── */
+    .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 40px 0; }
+    .strip-stat { background: var(--cream); padding: 24px 20px; text-align: center; }
+    .strip-stat .n { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--accent); display: block; line-height: 1; }
+    .strip-stat .l { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 6px; }
+
+    /* ── TROPHY ROW ── */
+    .trophy-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0; }
+    .trophy { background: var(--ink); color: var(--paper); padding: 24px 16px; text-align: center; }
+    .trophy-icon { font-size: 30px; display: block; margin-bottom: 10px; }
+    .trophy h4 { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+    .trophy p { font-size: 11px; color: rgba(245,239,227,.55); line-height: 1.6; }
+
+    /* ── WARNING BOX ── */
+    .warning-box { background: var(--ink); color: var(--paper); padding: 22px 26px; margin-bottom: 48px; border-left: 4px solid var(--accent2); }
+    .warning-box p { font-size: 12px; color: rgba(245,239,227,.75); line-height: 1.8; }
+
+    /* ── SOBRE MÍ ── */
+    .bio-hero { display: grid; grid-template-columns: 130px 1fr; gap: 32px; align-items: start; margin-bottom: 52px; padding-bottom: 52px; border-bottom: 1px dashed var(--border); }
+    .bio-avatar { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: #fff; flex-shrink: 0; }
+    .bio-hero h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; margin-bottom: 6px; }
+    .bio-subtitle { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+    .bio-hero p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    .timeline-section { list-style: none; position: relative; padding-left: 24px; }
+    .timeline-section::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+    .timeline-section li { position: relative; margin-bottom: 28px; padding-left: 20px; }
+    .timeline-section li::before { content: ''; position: absolute; left: -19px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); }
+    .tl-year { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 3px; }
+    .tl-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .tl-text { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.7; }
+
+    /* ── CONTACTO ── */
+    .form-group { margin-bottom: 26px; }
+    .form-group label { display: block; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; background: var(--cream);
+      border: 1px solid var(--border); border-bottom: 2px solid var(--ink);
+      padding: 13px 15px; font-family: 'Space Mono', monospace; font-size: 13px; color: var(--ink);
+      outline: none; transition: border-color .2s; appearance: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); border-bottom-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .submit-btn {
+      background: var(--ink); color: var(--paper); border: none;
+      padding: 15px 38px; font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .submit-btn:hover { background: var(--accent); }
+    .success-msg { display: none; background: var(--cream); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 18px 22px; margin-top: 22px; font-size: 13px; font-style: italic; color: var(--ink); }
+    .info-block { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px dashed var(--border); }
+    .info-block:last-child { border-bottom: none; }
+    .info-label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 3px; }
+    .info-val { font-size: 13px; color: var(--ink); }
+
+    /* ── SIDEBAR ── */
+    .widget { margin-bottom: 48px; }
+    .profile-card { background: var(--ink); color: var(--paper); padding: 30px; position: relative; overflow: hidden; }
+    .profile-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: var(--accent); opacity: .15; }
+    .profile-avatar { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 16px; position: relative; z-index: 1; }
+    .profile-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 9px; }
+    .profile-card p { font-size: 12px; color: rgba(245,239,227,.65); line-height: 1.8; font-style: italic; }
+    .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 22px; background: rgba(255,255,255,.1); }
+    .stat { background: var(--ink); padding: 13px; text-align: center; }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--accent2); display: block; }
+    .stat-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,239,227,.5); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-btn {
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      padding: 5px 12px; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; transition: all .2s;
+      background: none; font-family: 'Space Mono', monospace;
+    }
+    .tag-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tag-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .sidebar-tl { list-style: none; position: relative; padding-left: 18px; }
+    .sidebar-tl::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+    .sidebar-tl li { position: relative; margin-bottom: 18px; padding-left: 16px; font-size: 12px; }
+    .sidebar-tl li::before { content: ''; position: absolute; left: -15px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); }
+    .stl-year { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 2px; }
+    .stl-text { color: var(--ink); font-style: italic; line-height: 1.5; }
+
+    .sidebar-card { background: var(--cream); border: 1px solid var(--border); padding: 26px; margin-bottom: 20px; }
+    .sidebar-card h4 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .sidebar-card p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+    .sidebar-dark { background: var(--ink); color: var(--paper); padding: 26px; }
+    .sidebar-dark h4 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .sidebar-dark p { font-size: 12px; color: rgba(245,239,227,.65); line-height: 1.8; }
+
+    .ornament { text-align: center; color: var(--accent); font-size: 16px; letter-spacing: .5em; margin: 26px 0; opacity: .5; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--ink);
-      color: rgba(245,239,227,0.5);
-      text-align: center;
-      padding: 36px 40px;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-top: 3px solid var(--accent);
-    }
-
+    footer { background: var(--ink); color: rgba(245,239,227,.5); text-align: center; padding: 32px 40px; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; border-top: 3px solid var(--accent); }
     footer strong { color: var(--accent2); }
 
-    /* ── DECORATIVE DIVIDER ── */
-    .ornament {
-      text-align: center;
-      color: var(--accent);
-      font-size: 18px;
-      letter-spacing: 0.5em;
-      margin: 30px 0;
-      opacity: 0.5;
-    }
-
-    /* Responsive */
+    /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .grid { grid-template-columns: 1fr; }
       main { border-right: none; padding-right: 0; }
       aside { padding-left: 0; border-top: 1px solid var(--border); }
-      header { padding: 50px 24px 40px; }
-      nav { padding: 0 24px; }
-      .container { padding: 0 24px; }
+      header, nav, .container { padding-left: 20px; padding-right: 20px; }
+      .stat-strip, .trophy-row { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .bio-hero { grid-template-columns: 1fr; }
+      .bio-avatar { margin: 0 auto; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <p class="header-tag">✦ Blog personal — Andorra</p>
-      <h1>Iker <span>Viña</span><br/>Nieves</h1>
-      <p class="header-sub">Deportista, superviviente, cosplayer. Una vida que no sigue ningún guion.</p>
-      <div class="header-decorline"></div>
-    </div>
-  </header>
-
-  <!-- NAV -->
-  <nav>
-    <div class="container" style="display:flex; padding:0;">
-      <a href="#">Inicio</a>
-      <a href="#">Voleibol</a>
-      <a href="#">Cosplay</a>
-      <a href="#">Reflexiones</a>
-      <a href="#">Sobre mí</a>
-      <a href="#">Contacto</a>
-    </div>
-  </nav>
-
-  <!-- MAIN GRID -->
+<!-- HEADER -->
+<header>
   <div class="container">
-    <div class="grid">
+    <p class="header-tag">✦ Blog personal — Andorra</p>
+    <h1 class="site-title" onclick="goTo('inicio')">Iker <span>Viña</span><br/>Nieves</h1>
+    <p class="header-sub">Deportista, superviviente, cosplayer. Una vida que no sigue ningún guion.</p>
+    <div class="header-decorline"></div>
+  </div>
+</header>
 
-      <!-- CONTENT -->
-      <main>
+<!-- NAV -->
+<nav>
+  <div class="container" style="display:flex;padding-top:0;padding-bottom:0;">
+    <button onclick="goTo('inicio')" id="nav-inicio" class="active">Inicio</button>
+    <button onclick="goTo('voleibol')" id="nav-voleibol">Voleibol</button>
+    <button onclick="goTo('cosplay')" id="nav-cosplay">Cosplay</button>
+    <button onclick="goTo('reflexiones')" id="nav-reflexiones">Reflexiones</button>
+    <button onclick="goTo('sobre-mi')" id="nav-sobre-mi">Sobre mí</button>
+    <button onclick="goTo('contacto')" id="nav-contacto">Contacto</button>
+  </div>
+</nav>
 
-        <!-- FEATURED -->
+<!-- ═══════════════ PÁGINAS ═══════════════ -->
+<div class="container">
+  <div class="grid">
+    <main>
+
+      <!-- ── INICIO ── -->
+      <div class="page active" id="page-inicio">
         <div class="post-hero">
-          <div class="post-meta">
-            <span class="cat">Destacado</span>
-            <span>Marzo 2024</span>
-          </div>
+          <div class="post-meta"><span class="cat">Destacado</span><span>Marzo 2024</span></div>
           <h2>Del voleibol al cosplay:<br/><em>cómo reconstruí mi vida</em></h2>
-          <p>
-            Hubo un tiempo en que el voleibol lo era todo para mí. Las pistas del Andorra VC, el sonido del balón, el sudor de los entrenamientos. No era famoso, no ganaba títulos internacionales, pero era constante. Era disciplinado. Era yo.
-          </p>
-          <p>
-            Luego vino el caos. Las relaciones que se deshacen, los amigos que te traicionan, las noches en que la mente no encuentra dónde anclar. Y después, inesperadamente, el cosplay. Una obsesión que se convirtió en salvavidas.
-          </p>
-          <a href="#" class="read-more">Seguir leyendo →</a>
+          <p>Hubo un tiempo en que el voleibol lo era todo para mí. Las pistas del Andorra VC, el sonido del balón, el sudor de los entrenamientos. No era famoso, no ganaba títulos internacionales, pero era constante. Era disciplinado. Era yo.</p>
+          <p>Luego vino el caos. Las relaciones que se deshacen, los amigos que te traicionan, las noches en que la mente no encuentra dónde anclar. Y después, inesperadamente, el cosplay. Una obsesión que se convirtió en salvavidas.</p>
+          <button class="read-more-btn" onclick="goTo('reflexiones')">Seguir leyendo →</button>
         </div>
 
         <div class="section-title">Entradas recientes</div>
 
-        <!-- POST LIST -->
         <div class="post-list">
-
           <div class="post-card">
             <div class="post-number">01</div>
             <div>
-              <div class="post-meta"><span class="cat">Infancia</span><span>Ene 2024</span></div>
-              <h3>El niño que era diferente en el patio</h3>
-              <p>Crecer en Andorra con la sensación de no encajar no es fácil. Las burlas en el colegio dejaron marcas que tardé décadas en entender. Aquí hablo de eso, sin filtros.</p>
+              <div class="post-meta"><span class="cat">Reflexiones</span><span>Ene 2024</span></div>
+              <h3><button onclick="goTo('reflexiones')">El niño que era diferente en el patio</button></h3>
+              <p>Crecer en Andorra con la sensación de no encajar no es fácil. Las burlas en el colegio dejaron marcas que tardé décadas en entender.</p>
             </div>
           </div>
-
           <div class="post-card">
             <div class="post-number">02</div>
             <div>
               <div class="post-meta"><span class="cat">Voleibol</span><span>Feb 2024</span></div>
-              <h3>Lo que el Andorra VC me enseñó sobre resistir</h3>
-              <p>El deporte fue mi primera terapia. Sin saberlo, cada entrenamiento era una forma de procesar lo que no podía decir con palabras. El voleibol me dio disciplina cuando todo lo demás era ruido.</p>
+              <h3><button onclick="goTo('voleibol')">Lo que el Andorra VC me enseñó sobre resistir</button></h3>
+              <p>El deporte fue mi primera terapia. Sin saberlo, cada entrenamiento era una forma de procesar lo que no podía decir con palabras.</p>
             </div>
           </div>
-
           <div class="pull-quote">
             "No llegué a la fama internacional. Pero en cada partido me dejaba la piel. Y eso, a veces, es suficiente."
             <cite>— Iker Viña Nieves</cite>
           </div>
-
           <div class="post-card">
             <div class="post-number">03</div>
             <div>
-              <div class="post-meta"><span class="cat">Vida personal</span><span>Feb 2024</span></div>
-              <h3>Sofía, Rubén y la noche que cambió todo</h3>
+              <div class="post-meta"><span class="cat">Reflexiones</span><span>Feb 2024</span></div>
+              <h3><button onclick="goTo('reflexiones')">Sofía, Rubén y la noche que cambió todo</button></h3>
               <p>No sé si algún día seré capaz de hablar de esto con total calma. Pero escribirlo ayuda. La traición de las personas que más quieres tiene un sabor que no se olvida.</p>
             </div>
           </div>
-
           <div class="post-card">
             <div class="post-number">04</div>
             <div>
               <div class="post-meta"><span class="cat">Salud mental</span><span>Mar 2024</span></div>
-              <h3>Lo que nadie te cuenta sobre el internamiento psiquiátrico</h3>
-              <p>Entré roto. Salí diferente. No "curado" —eso es una palabra demasiado grande— pero sí con herramientas. Y con la certeza de que pedir ayuda no es rendirse.</p>
+              <h3><button onclick="goTo('reflexiones')">Lo que nadie te cuenta sobre el internamiento psiquiátrico</button></h3>
+              <p>Entré roto. Salí diferente. No "curado" pero sí con herramientas. Y con la certeza de que pedir ayuda no es rendirse.</p>
             </div>
           </div>
-
           <div class="post-card">
             <div class="post-number">05</div>
             <div>
               <div class="post-meta"><span class="cat">Cosplay</span><span>Mar 2024</span></div>
-              <h3>Por qué gané mi primer torneo disfrazado de un personaje de anime</h3>
-              <p>La gente se reía al principio. Luego dejaron de reírse. El cosplay profesional exige una dedicación que pocos entienden: cada detalle, cada costura, cada gesto importa. Y yo sabía de eso.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </main>
-
-      <!-- SIDEBAR -->
-      <aside>
-
-        <!-- PROFILE -->
-        <div class="widget">
-          <div class="profile-card">
-            <div class="profile-avatar">I</div>
-            <h3>Iker Viña Nieves</h3>
-            <p>Ex jugador del Andorra VC. Superviviente de mis propias tormentas. Cosplayer profesional y amante del anime. Escribo para no olvidar.</p>
-            <div class="profile-stats">
-              <div class="stat">
-                <span class="stat-number">96</span>
-                <span class="stat-label">Años vividos</span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">∞</span>
-                <span class="stat-label">Torneos alma</span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">3</span>
-                <span class="stat-label">Relaciones</span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">1</span>
-                <span class="stat-label">Vida</span>
-              </div>
+              <h3><button onclick="goTo('cosplay')">Por qué gané mi primer torneo disfrazado de un personaje de anime</button></h3>
+              <p>La gente se reía al principio. Luego dejaron de reírse. El cosplay profesional exige una dedicación que pocos entienden.</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- TIMELINE -->
-        <div class="widget">
-          <div class="section-title">Línea de vida</div>
-          <ul class="timeline">
-            <li>
-              <span class="tl-year">Infancia</span>
-              <span class="tl-text">Nacido en Andorra. Acoso escolar. Las primeras heridas invisibles.</span>
-            </li>
-            <li>
-              <span class="tl-year">Juventud</span>
-              <span class="tl-text">Ingresa al Andorra VC. El voleibol como refugio y disciplina.</span>
-            </li>
-            <li>
-              <span class="tl-year">Primer matrimonio</span>
-              <span class="tl-text">Sofía. Los hijos. La traición de Rubén Freitas. El silencio que sigue.</span>
-            </li>
-            <li>
-              <span class="tl-year">Diana</span>
-              <span class="tl-text">Castell Antic. Intensidad, inestabilidad. El quiebre definitivo.</span>
-            </li>
-            <li>
-              <span class="tl-year">Internamiento</span>
-              <span class="tl-text">Un periodo largo. Tratamiento. Supervisión. Y un póster de anime en la mente.</span>
-            </li>
-            <li>
-              <span class="tl-year">Cosplay</span>
-              <span class="tl-text">Torneos. Reconocimiento. Una identidad nueva construida con tela y voluntad.</span>
-            </li>
-            <li>
-              <span class="tl-year">Últimos años</span>
-              <span class="tl-text">Aislamiento tranquilo. El anime. La memoria. La vida que fue.</span>
-            </li>
-          </ul>
+      <!-- ── VOLEIBOL ── -->
+      <div class="page" id="page-voleibol">
+        <button class="back-btn" onclick="goTo('inicio')">← Volver al inicio</button>
+        <div class="post-meta"><span class="cat">Voleibol</span></div>
+        <h1 class="page-title">El deporte que<br/><em>me salvó la vida</em></h1>
+        <p class="page-intro">El voleibol no fue solo un deporte para mí. Fue el primer lugar donde mi cuerpo tenía un propósito, donde el esfuerzo se medía en saltos y no en burlas. Aquí recojo todo lo que viví dentro y fuera de la pista del Andorra VC.</p>
+
+        <div class="stat-strip">
+          <div class="strip-stat"><span class="n">∞</span><span class="l">Entrenamientos</span></div>
+          <div class="strip-stat"><span class="n">1</span><span class="l">Club — Andorra VC</span></div>
+          <div class="strip-stat"><span class="n">100%</span><span class="l">Entrega en cada partido</span></div>
         </div>
 
-        <!-- TAGS -->
-        <div class="widget">
-          <div class="section-title">Temas</div>
-          <div class="tags">
-            <span class="tag active">Cosplay</span>
-            <span class="tag">Voleibol</span>
-            <span class="tag">Salud mental</span>
-            <span class="tag">Anime</span>
-            <span class="tag">Andorra</span>
-            <span class="tag">Reflexiones</span>
-            <span class="tag">Relaciones</span>
-            <span class="tag">Resiliencia</span>
+        <div class="section-title">Artículos sobre voleibol</div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Voleibol</span><span>Febrero 2024</span></div>
+          <h2>Lo que el Andorra VC me enseñó sobre resistir</h2>
+          <p>El deporte fue mi primera terapia. Sin saberlo, cada entrenamiento era una forma de procesar lo que no podía decir con palabras. El entrenador ponía música, yo ponía el cuerpo, y algo dentro se iba ordenando en silencio.</p>
+          <p>En el Andorra VC no éramos estrellas. Éramos un equipo local, con recursos modestos y ambiciones reales. Pero el nivel de compromiso que vi en ese vestuario marcó mi forma de entender el esfuerzo para siempre.</p>
+          <div class="pull-quote">
+            "No llegué a la fama internacional. Pero en cada partido me dejaba la piel. Y eso, a veces, es suficiente."
+            <cite>— Iker Viña Nieves</cite>
           </div>
+          <p>La disciplina que aprendí sobre la pista fue la misma que luego apliqué para reconstruirme. Los entrenamientos me enseñaron que el cuerpo aguanta más de lo que la mente cree. Y que cuando todo falla, el hábito sostiene.</p>
         </div>
 
-        <!-- ORNAMENT -->
-        <div class="ornament">✦ ✦ ✦</div>
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Voleibol</span><span>Enero 2024</span></div>
+          <h2>El primer día que entré a un pabellón y sentí que pertenecía</h2>
+          <p>Recuerdo el olor a resina del suelo, el chirrido de las zapatillas, las redes tensadas como promesas. Había crecido sintiéndome fuera de sitio en casi todos los espacios. Pero ese pabellón fue diferente.</p>
+          <p>Nadie me preguntó si era raro. Nadie se rió de mi forma de vestir ni de mis gustos. Lo único que importaba era si podías saltar, si podías conectar con el equipo, si dabas lo que había que dar. Por primera vez, podía.</p>
+        </div>
 
-        <!-- QUOTE WIDGET -->
-        <div style="background:var(--cream); border:1px solid var(--border); padding:28px;">
-          <div class="section-title" style="margin-bottom:14px;">Frase del momento</div>
-          <p style="font-family:'Playfair Display',serif; font-size:15px; font-style:italic; line-height:1.7; color:var(--ink);">
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Voleibol</span><span>Diciembre 2023</span></div>
+          <h2>Por qué dejé de jugar y qué me llevé conmigo</h2>
+          <p>No fue una decisión fácil. Cuando mi vida personal empezó a derrumbarse, el voleibol fue lo último que solté. Durante un tiempo intenté mantener los dos mundos: el de la pista y el del caos interior. No pude.</p>
+          <p>Pero lo que me llevé del deporte no desapareció con el último partido. La constancia, la capacidad de levantarme después de una caída, la conciencia de que el cuerpo es el único hogar que siempre tienes. Eso sigue conmigo.</p>
+        </div>
+      </div>
+
+      <!-- ── COSPLAY ── -->
+      <div class="page" id="page-cosplay">
+        <button class="back-btn" onclick="goTo('inicio')">← Volver al inicio</button>
+        <div class="post-meta"><span class="cat">Cosplay</span></div>
+        <h1 class="page-title">El arte de ser<br/><em>otro para ser yo</em></h1>
+        <p class="page-intro">El cosplay llegó a mi vida cuando ya no quedaba mucho en pie. Lo que empezó como una obsesión se convirtió en oficio, y el oficio en identidad. Aquí cuento cómo un hobby extraño se transformó en mi forma de estar en el mundo.</p>
+
+        <div class="trophy-row">
+          <div class="trophy"><span class="trophy-icon">🏆</span><h4>Primer torneo ganado</h4><p>Después del internamiento. El primer reconocimiento real.</p></div>
+          <div class="trophy"><span class="trophy-icon">✦</span><h4>Varios torneos profesionales</h4><p>Reconocido como figura peculiar pero talentosa.</p></div>
+          <div class="trophy"><span class="trophy-icon">🎌</span><h4>Especialidad: anime</h4><p>Incluyendo el personaje del que se enamoró durante su crisis.</p></div>
+        </div>
+
+        <div class="section-title">Artículos sobre cosplay</div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Cosplay</span><span>Marzo 2024</span></div>
+          <h2>Por qué gané mi primer torneo disfrazado de un personaje de anime</h2>
+          <p>La gente se reía al principio. Un hombre de mediana edad en un traje de anime, con cada costura calculada al milímetro, con cada accesorio fabricado a mano durante semanas. Se reían hasta que empezaron a mirar de verdad.</p>
+          <p>El cosplay profesional exige una dedicación que pocos entienden. No es ponerse un disfraz. Es estudiar al personaje, entender su historia, replicar su postura, aprender a habitarlo. Es, en cierta forma, una actuación sin palabras.</p>
+          <div class="pull-quote">
             "Cada disfraz que me pongo es una versión de mí que no tuve miedo de mostrar."
-          </p>
-          <p style="font-size:11px; color:var(--muted); margin-top:10px; letter-spacing:0.1em;">— I. V. Nieves</p>
+            <cite>— Iker Viña Nieves</cite>
+          </div>
+          <p>Cuando anunciaron mi nombre como ganador, no sentí euforia. Sentí algo más parecido a la paz. Como si todos los años de risas y burlas hubieran sido un precio que, finalmente, había valido la pena pagar.</p>
         </div>
 
-      </aside>
-    </div>
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Cosplay</span><span>Febrero 2024</span></div>
+          <h2>La obsesión que me mantuvo con vida</h2>
+          <p>En mis momentos más oscuros, cuando las paredes de mi habitación estaban cubiertas de pósters y figuras de ese personaje de anime, la gente pensaba que me estaba hundiendo. Y en parte tenían razón.</p>
+          <p>Pero también había algo más. Había un hilo, aunque fino, que me conectaba a algo. Un mundo al que podía pertenecer sin que nadie me juzgara, sin que nadie me traicionara. Un personaje que nunca me iba a abandonar.</p>
+          <p>Con el tiempo aprendí a transformar esa obsesión en algo productivo. El mismo nivel de atención que dediqué a empapelar mi casa de imágenes lo apliqué a construir el mejor disfraz posible. La energía era la misma; solo cambié el destino.</p>
+        </div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Cosplay</span><span>Enero 2024</span></div>
+          <h2>Cómo construyo un disfraz desde cero</h2>
+          <p>Todo empieza con la investigación. Antes de cortar un solo trozo de tela, paso semanas estudiando el personaje: cada ángulo, cada detalle, cada pliegue tal como aparece en el manga o en el anime.</p>
+          <p>Después vienen los materiales. Aprendo lo que necesito para cada proyecto: espuma EVA para las armaduras, telas específicas para las túnicas, resinas para los accesorios. El cosplay me convirtió en sastre, escultor y artesano sin que yo lo planeara.</p>
+          <p>Y finalmente, la construcción. Semanas de trabajo, errores, deshacerlo y empezar de nuevo. Esa parte me recuerda mucho al entrenamiento de voleibol: la repetición como camino hacia la perfección.</p>
+        </div>
+      </div>
+
+      <!-- ── REFLEXIONES ── -->
+      <div class="page" id="page-reflexiones">
+        <button class="back-btn" onclick="goTo('inicio')">← Volver al inicio</button>
+        <div class="post-meta"><span class="cat">Reflexiones</span></div>
+        <h1 class="page-title">Lo que no<br/><em>se puede callar</em></h1>
+        <p class="page-intro">Esta sección es la más difícil de escribir y probablemente la más importante. Aquí no hay hazañas deportivas ni trofeos. Solo los años que me costó entender quién era y lo que me había pasado.</p>
+
+        <div class="warning-box">
+          <p>⚠ Algunas entradas abordan temas de salud mental, rupturas difíciles y hospitalización psiquiátrica. Las comparto porque creo que normalizar estas experiencias importa. Léelas con la calma que merecen.</p>
+        </div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Infancia</span><span>Enero 2024</span></div>
+          <h2>El niño que era diferente en el patio</h2>
+          <p>En el colegio aprendes muchas cosas que no están en los libros. Aprendes quién encaja y quién no. Aprendes que el cuerpo puede ser arma o blanco dependiendo del día. Yo siempre fui el blanco.</p>
+          <p>Las burlas no eran violencia física, pero dejaban el mismo tipo de cicatrices. Esas que no se ven desde fuera pero que condicionan la forma en que te mueves por el mundo durante décadas. La forma en que agachas la cabeza al entrar en una habitación. La forma en que esperas el golpe antes de que llegue.</p>
+          <p>Tardé mucho tiempo en entender que esas experiencias no decían nada de mí. Decían algo de ellos, de su necesidad de reducir a alguien para sentirse más grandes. Pero cuando eres niño no tienes esa distancia.</p>
+        </div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Vida personal</span><span>Febrero 2024</span></div>
+          <h2>Sofía, Rubén y la noche que cambió todo</h2>
+          <p>Hay traiciones que uno puede procesar. Hay otras que reconfiguran tu forma de entender el mundo para siempre. La de Sofía y Rubén fue de las segundas.</p>
+          <p>No voy a contar los detalles porque no me pertenecen solo a mí. Lo que sí puedo decir es que perder a tu pareja y a tu mejor amigo en el mismo acto, y encima perder a tus hijos en el proceso, es un tipo de dolor que no tiene nombre en ningún idioma que yo conozca.</p>
+          <div class="pull-quote">
+            "El dolor que no tiene nombre es el más difícil de curar. No sabes cómo llamarlo para pedirle que se vaya."
+            <cite>— Iker Viña Nieves</cite>
+          </div>
+          <p>Me llevó años dejar de revivirlo. Y luego llegó Diana, y la historia se repitió con variaciones. Como si una parte de mí buscara demostrar que podía salir de ese patrón, y otra parte lo saboteara desde dentro.</p>
+        </div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Salud mental</span><span>Febrero 2024</span></div>
+          <h2>Lo que nadie te cuenta sobre el internamiento psiquiátrico</h2>
+          <p>El internamiento no fue una derrota. Tardé mucho en entenderlo así, pero no lo fue. Fue el momento en que alguien tomó mi estado en serio y dijo: esto necesita atención real, no voluntad.</p>
+          <p>Dentro hay tiempo. Demasiado tiempo, a veces. Tiempo para pensar en todo lo que no habías procesado. Tiempo para hablar con personas que también están en sus propios abismos. Hay algo extrañamente hermanador en eso.</p>
+          <p>Salí con herramientas que no tenía. No como alguien "curado" —ese concepto me parece una trampa—, sino como alguien que sabe reconocer cuándo empieza la caída y tiene algo a lo que agarrarse.</p>
+        </div>
+
+        <div class="article-block">
+          <div class="post-meta"><span class="cat">Reflexiones</span><span>Marzo 2024</span></div>
+          <h2>Vivir solo y aprender a no necesitar que te entiendan</h2>
+          <p>En mis últimos años he vivido de forma relativamente aislada. No por amargura, sino por elección. Hay una diferencia entre la soledad impuesta y la soledad elegida, y tardé mucho en aprender a habitar la segunda.</p>
+          <p>Tengo el cosplay, tengo el anime, tengo este blog. Tengo los recuerdos de los partidos y las pistas del Andorra VC. Tengo la conciencia de que viví mucho, tal vez demasiado, y de que cada una de esas cosas me dejó algo.</p>
+          <p>No sé si eso es paz. Pero se le parece más que cualquier otra cosa que haya sentido antes.</p>
+        </div>
+      </div>
+
+      <!-- ── SOBRE MÍ ── -->
+      <div class="page" id="page-sobre-mi">
+        <button class="back-btn" onclick="goTo('inicio')">← Volver al inicio</button>
+        <div class="post-meta"><span class="cat">Sobre mí</span></div>
+
+        <div class="bio-hero">
+          <div class="bio-avatar">I</div>
+          <div>
+            <h2>Iker Viña Nieves</h2>
+            <span class="bio-subtitle">Andorra · Ex jugador del Andorra VC · Cosplayer profesional</span>
+            <p>Una vida que pasó por el deporte, el amor, la traición, el hospital psiquiátrico y los torneos de cosplay. No en ese orden. A veces todo a la vez.</p>
+          </div>
+        </div>
+
+        <div class="section-title">Quién soy</div>
+        <div class="article-block" style="border-bottom:none;padding-bottom:0;margin-bottom:48px;">
+          <p>Nací en Andorra y crecí con la sensación de que el mundo estaba hecho para otros. En el colegio era el blanco fácil: <strong>diferente en formas que entonces no sabía nombrar</strong>, visible de una manera que nunca pedí. Eso deja marca.</p>
+          <p>El voleibol llegó como una forma de ocupar el cuerpo cuando la mente era demasiado ruidosa. En el Andorra VC encontré algo parecido a un lugar. No fui una estrella. Fui constante, disciplinado, comprometido. Y eso, dentro del equipo, era suficiente.</p>
+          <p>Después vinieron las relaciones: Sofía, Diana, una tercera que prefiero no nombrar. Cada una dejó algo. Algunas dejaron cosas que tardé años en identificar y otros tantos en soltar.</p>
+          <p>El internamiento psiquiátrico fue el punto de inflexión. No una caída, aunque lo pareciera desde fuera. Fue el primer momento en que me trataron de verdad, en que el estado de mi mente se tomó en serio.</p>
+          <p>El cosplay lo encontré de forma casi accidental, a través de una obsesión que empezó durante mi crisis. Lo que empezó como compulsión se convirtió en oficio. <strong>Gané torneos. Me reconocieron.</strong> Encontré comunidad en los lugares más inesperados.</p>
+          <p>Este blog es el intento de contar todo eso sin adornarlo demasiado.</p>
+        </div>
+
+        <div class="pull-quote">
+          "No busco que me entiendan. Busco que sepan que este tipo de vida también existe, y que quien la vive no está roto."
+          <cite>— Iker Viña Nieves</cite>
+        </div>
+
+        <div class="section-title">Línea de vida</div>
+        <ul class="timeline-section">
+          <li><span class="tl-year">Nacimiento</span><div class="tl-title">Andorra</div><div class="tl-text">Nace en Andorra. Infancia marcada por el acoso escolar y la sensación de no encajar.</div></li>
+          <li><span class="tl-year">Juventud</span><div class="tl-title">El Andorra VC</div><div class="tl-text">Encuentra en el voleibol una vía de escape y disciplina. Jugador comprometido dentro del ámbito local.</div></li>
+          <li><span class="tl-year">Primer matrimonio</span><div class="tl-title">Sofía</div><div class="tl-text">Matrimonio, hijos, y una ruptura devastadora que implicó también la traición de su mejor amigo, Rubén Freitas.</div></li>
+          <li><span class="tl-year">Segunda relación</span><div class="tl-title">Diana — Castell Antic</div><div class="tl-text">Relación intensa e inestable cuyo desenlace supone un punto de quiebre definitivo en su estabilidad mental.</div></li>
+          <li><span class="tl-year">Tercera relación</span><div class="tl-title">Desconfianza y cierre</div><div class="tl-text">Última relación, marcada por los conflictos. Consolida su aislamiento social.</div></li>
+          <li><span class="tl-year">Crisis</span><div class="tl-title">Internamiento psiquiátrico</div><div class="tl-text">Periodo prolongado de tratamiento y supervisión médica. Punto de inflexión hacia la reconstrucción.</div></li>
+          <li><span class="tl-year">Renacimiento</span><div class="tl-title">El cosplay</div><div class="tl-text">Encuentra un nuevo propósito. Gana varios torneos profesionales y es reconocido en ese ámbito.</div></li>
+          <li><span class="tl-year">Últimos años</span><div class="tl-title">Aislamiento tranquilo</div><div class="tl-text">Vive de forma relativamente aislada, con el cosplay, el anime y este blog como compañía.</div></li>
+        </ul>
+      </div>
+
+      <!-- ── CONTACTO ── -->
+      <div class="page" id="page-contacto">
+        <button class="back-btn" onclick="goTo('inicio')">← Volver al inicio</button>
+        <div class="post-meta"><span class="cat">Contacto</span></div>
+        <h1 class="page-title">Escríbeme<br/><em>si quieres</em></h1>
+        <p class="page-intro">No soy rápido respondiendo. A veces tardo días. Pero leo todo lo que llega. Si algo de lo que escribo te ha resonado, me alegra saberlo. Si quieres hablar de cosplay, de voleibol o de cualquier otra cosa, bienvenido.</p>
+
+        <div class="section-title">Formulario de contacto</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="tu@correo.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="asunto">Asunto</label>
+          <select id="asunto">
+            <option value="">Selecciona un tema…</option>
+            <option>Cosplay — pregunta o colaboración</option>
+            <option>Voleibol — recuerdos o comentarios</option>
+            <option>Reflexiones — algo que me quiero contar</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" placeholder="Escribe lo que quieras decirme…"></textarea>
+        </div>
+        <button class="submit-btn" onclick="handleSubmit()">Enviar mensaje →</button>
+        <div class="success-msg" id="successMsg">
+          Mensaje recibido. Gracias por escribir. Te respondo cuando pueda.
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside>
+      <!-- Perfil -->
+      <div class="widget">
+        <div class="profile-card">
+          <div class="profile-avatar">I</div>
+          <h3>Iker Viña Nieves</h3>
+          <p>Ex jugador del Andorra VC. Superviviente de mis propias tormentas. Cosplayer profesional y amante del anime.</p>
+          <div class="profile-stats">
+            <div class="stat"><span class="stat-number">96</span><span class="stat-label">Años vividos</span></div>
+            <div class="stat"><span class="stat-number">∞</span><span class="stat-label">Torneos alma</span></div>
+            <div class="stat"><span class="stat-number">3</span><span class="stat-label">Relaciones</span></div>
+            <div class="stat"><span class="stat-number">1</span><span class="stat-label">Vida</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Línea de vida (sidebar) -->
+      <div class="widget">
+        <div class="section-title">Línea de vida</div>
+        <ul class="sidebar-tl">
+          <li><span class="stl-year">Infancia</span><span class="stl-text">Nacido en Andorra. Acoso escolar. Las primeras heridas invisibles.</span></li>
+          <li><span class="stl-year">Juventud</span><span class="stl-text">Ingresa al Andorra VC. El voleibol como refugio y disciplina.</span></li>
+          <li><span class="stl-year">Matrimonio</span><span class="stl-text">Sofía. Los hijos. La traición de Rubén Freitas. El silencio que sigue.</span></li>
+          <li><span class="stl-year">Diana</span><span class="stl-text">Castell Antic. Intensidad, inestabilidad. El quiebre definitivo.</span></li>
+          <li><span class="stl-year">Internamiento</span><span class="stl-text">Tratamiento. Supervisión. Y un póster de anime en la mente.</span></li>
+          <li><span class="stl-year">Cosplay</span><span class="stl-text">Torneos. Reconocimiento. Una identidad nueva construida con voluntad.</span></li>
+          <li><span class="stl-year">Últimos años</span><span class="stl-text">Aislamiento tranquilo. El anime. La memoria. La vida que fue.</span></li>
+        </ul>
+      </div>
+
+      <!-- Tags -->
+      <div class="widget">
+        <div class="section-title">Temas</div>
+        <div class="tags">
+          <button class="tag-btn active" onclick="goTo('cosplay')">Cosplay</button>
+          <button class="tag-btn" onclick="goTo('voleibol')">Voleibol</button>
+          <button class="tag-btn" onclick="goTo('reflexiones')">Salud mental</button>
+          <button class="tag-btn" onclick="goTo('reflexiones')">Anime</button>
+          <button class="tag-btn" onclick="goTo('sobre-mi')">Andorra</button>
+          <button class="tag-btn" onclick="goTo('reflexiones')">Reflexiones</button>
+          <button class="tag-btn" onclick="goTo('reflexiones')">Relaciones</button>
+          <button class="tag-btn" onclick="goTo('reflexiones')">Resiliencia</button>
+        </div>
+      </div>
+
+      <div class="ornament">✦ ✦ ✦</div>
+
+      <!-- Frase -->
+      <div style="background:var(--cream);border:1px solid var(--border);padding:26px;">
+        <div class="section-title" style="margin-bottom:14px;">Frase del momento</div>
+        <p style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;line-height:1.7;color:var(--ink);">"Cada disfraz que me pongo es una versión de mí que no tuve miedo de mostrar."</p>
+        <p style="font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:.1em;">— I. V. Nieves</p>
+      </div>
+    </aside>
   </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <strong>Iker Viña Nieves</strong> · Blog Personal · Andorra<br/>
-    <span style="font-size:10px; margin-top:6px; display:block; letter-spacing:0.08em; text-transform:none; font-style:italic;">Una vida rara es, aun así, una vida plena.</span>
-  </footer>
+<footer>
+  <strong>Iker Viña Nieves</strong> · Blog Personal · Andorra<br/>
+  <span style="font-size:10px;margin-top:6px;display:block;letter-spacing:.08em;text-transform:none;font-style:italic;">Una vida rara es, aun así, una vida plena.</span>
+</footer>
 
+<script>
+  const pages = ['inicio','voleibol','cosplay','reflexiones','sobre-mi','contacto'];
+
+  function goTo(pageId) {
+    // Hide all pages
+    pages.forEach(p => {
+      document.getElementById('page-' + p).classList.remove('active');
+      const navBtn = document.getElementById('nav-' + p);
+      if (navBtn) navBtn.classList.remove('active');
+    });
+
+    // Show target page
+    const target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.classList.add('active');
+      // Force re-animation
+      target.style.animation = 'none';
+      target.offsetHeight; // reflow
+      target.style.animation = '';
+    }
+    const navBtn = document.getElementById('nav-' + pageId);
+    if (navBtn) navBtn.classList.add('active');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function handleSubmit() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    if (!nombre || !email || !mensaje) {
+      alert('Por favor, rellena al menos el nombre, el correo y el mensaje.');
+      return;
+    }
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('nombre').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('asunto').value = '';
+    document.getElementById('mensaje').value = '';
+  }
+</script>
 </body>
 </html>
