@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iker Viña Nieves — Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root{--ink:#1a1209;--paper:#f5efe3;--cream:#ede5d0;--accent:#c0392b;--accent2:#d4874d;--muted:#7a6e5f;--border:#c9bfae;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--paper);color:var(--ink);font-family:'Space Mono',monospace;font-size:14px;line-height:1.8;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.6;}
+    header{position:relative;padding:60px 40px 44px;border-bottom:2px solid var(--ink);background:var(--cream);overflow:hidden;}
+    header::after{content:'';position:absolute;top:0;right:0;width:340px;height:100%;background:repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(192,57,43,.06) 8px,rgba(192,57,43,.06) 9px);pointer-events:none;}
+    .header-tag{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+    .site-title{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);font-weight:900;line-height:1;letter-spacing:-.02em;position:relative;z-index:1;text-decoration:none;color:var(--ink);display:block;}
+    .site-title span{color:var(--accent);font-style:italic;}
+    .header-sub{margin-top:14px;font-size:13px;color:var(--muted);max-width:480px;font-style:italic;}
+    .header-decorline{width:60px;height:3px;background:var(--accent);margin-top:20px;}
+    nav{background:var(--ink);display:flex;border-bottom:2px solid var(--accent);overflow-x:auto;padding:0 40px;}
+    nav a{color:var(--paper);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:16px 22px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap;text-decoration:none;display:block;}
+    nav a:hover,nav a.active{background:var(--accent);color:#fff;}
+    .container{max-width:1180px;margin:0 auto;padding:0 40px;}
+    .grid{display:grid;grid-template-columns:1fr 300px;gap:0;align-items:start;}
+    main{padding:60px 50px 60px 0;border-right:1px solid var(--border);animation:fadeUp .4s ease both;}
+    aside{padding:60px 0 60px 40px;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    .section-title{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;display:flex;align-items:center;gap:12px;}
+    .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+    .post-meta{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;gap:16px;align-items:center;}
+    .cat{background:var(--accent);color:#fff;padding:2px 10px;font-size:10px;}
+    .page-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,54px);font-weight:900;line-height:1.05;margin-bottom:22px;}
+    .page-title em{color:var(--accent);font-style:italic;}
+    .page-intro{color:var(--muted);font-size:13px;line-height:1.9;max-width:640px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px dashed var(--border);}
+    .back-link{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;transition:gap .2s;margin-bottom:40px;}
+    .back-link:hover{gap:14px;}
+
+    /* illustration */
+    .page-illustration{width:100%;margin-bottom:48px;border:1px solid var(--border);overflow:hidden;}
+    .page-illustration svg{display:block;width:100%;height:auto;}
+
+    /* form */
+    .form-group{margin-bottom:26px;}
+    .form-group label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;}
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;background:var(--cream);
+      border:1px solid var(--border);border-bottom:2px solid var(--ink);
+      padding:13px 15px;font-family:'Space Mono',monospace;font-size:13px;color:var(--ink);
+      outline:none;transition:border-color .2s, box-shadow .2s;appearance:none;
+    }
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+      border-color:var(--accent);border-bottom-color:var(--accent);
+      box-shadow:0 2px 0 0 var(--accent);
+    }
+    .form-group textarea{resize:vertical;min-height:140px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .submit-btn{
+      background:var(--ink);color:var(--paper);border:none;
+      padding:15px 38px;font-family:'Space Mono',monospace;
+      font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+      cursor:pointer;transition:background .2s;
+      display:inline-flex;align-items:center;gap:10px;
+      position:relative;
+    }
+    .submit-btn:hover:not(:disabled){background:var(--accent);}
+    .submit-btn:disabled{opacity:.6;cursor:not-allowed;}
+    .spinner{
+      width:14px;height:14px;border:2px solid rgba(245,239,227,.3);
+      border-top-color:#fff;border-radius:50%;
+      animation:spin .7s linear infinite;display:none;
+    }
+    .submit-btn.loading .spinner{display:block;}
+    .submit-btn.loading .btn-text{opacity:.6;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* feedback messages */
+    .msg{display:none;padding:18px 22px;margin-top:22px;font-size:13px;font-style:italic;border-left:4px solid;}
+    .msg.success{background:var(--cream);border-color:var(--accent);color:var(--ink);}
+    .msg.error{background:#fff0ee;border-color:#c0392b;color:#c0392b;font-style:normal;font-size:12px;}
+
+    /* sidebar */
+    .widget{margin-bottom:48px;}
+    .info-block{margin-bottom:18px;padding-bottom:18px;border-bottom:1px dashed var(--border);}
+    .info-block:last-child{border-bottom:none;}
+    .info-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px;}
+    .info-val{font-size:13px;color:var(--ink);}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);color:var(--muted);text-decoration:none;display:inline-block;transition:all .2s;}
+    .tag:hover{border-color:var(--accent);color:var(--accent);}
+
+    footer{background:var(--ink);color:rgba(245,239,227,.5);text-align:center;padding:32px 40px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;border-top:3px solid var(--accent);}
+    footer strong{color:var(--accent2);}
+    @media(max-width:860px){.grid{grid-template-columns:1fr;}main{border-right:none;padding-right:0;}aside{padding-left:0;border-top:1px solid var(--border);}header,nav,.container{padding-left:20px;padding-right:20px;}.form-row{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <p class="header-tag">✦ Blog personal — Andorra</p>
+    <a href="index.html" class="site-title">Iker <span>Viña</span><br/>Nieves</a>
+    <p class="header-sub">Deportista, superviviente, cosplayer. Una vida que no sigue ningún guion.</p>
+    <div class="header-decorline"></div>
+  </div>
+</header>
+<nav>
+  <div class="container" style="display:flex;padding-top:0;padding-bottom:0;">
+    <a href="index.html">Inicio</a>
+    <a href="voleibol.html">Voleibol</a>
+    <a href="cosplay.html">Cosplay</a>
+    <a href="reflexiones.html">Reflexiones</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="contacto.html" class="active">Contacto</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="grid">
+    <main>
+      <a href="index.html" class="back-link">← Volver al inicio</a>
+      <div class="post-meta"><span class="cat">Contacto</span></div>
+      <h1 class="page-title">Escríbeme<br/><em>si quieres</em></h1>
+
+      <!-- ILUSTRACIÓN: sobre de carta con luz nocturna -->
+      <div class="page-illustration">
+        <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bgc" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a1209"/>
+              <stop offset="100%" stop-color="#2e1e0f"/>
+            </linearGradient>
+            <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3d2510"/>
+              <stop offset="100%" stop-color="#1a1209"/>
+            </linearGradient>
+            <radialGradient id="lamp" cx="50%" cy="0%" r="80%">
+              <stop offset="0%" stop-color="#d4874d" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#d4874d" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- bg -->
+          <rect width="760" height="260" fill="url(#bgc)"/>
+          <!-- lamp glow -->
+          <ellipse cx="380" cy="60" rx="260" ry="130" fill="url(#lamp)"/>
+          <!-- desk -->
+          <rect x="60" y="175" width="640" height="12" rx="2" fill="url(#desk)"/>
+          <rect x="60" y="187" width="640" height="73" fill="#1a1209"/>
+          <!-- lamp stand -->
+          <line x1="380" y1="0" x2="380" y2="60" stroke="#c9bfae" stroke-width="2.5"/>
+          <ellipse cx="380" cy="62" rx="30" ry="10" fill="#c9bfae" opacity=".4"/>
+          <!-- envelope body -->
+          <rect x="245" y="100" width="270" height="180" rx="3" fill="#ede5d0" opacity=".95"/>
+          <!-- envelope flap open -->
+          <polygon points="245,100 380,178 515,100" fill="#c9bfae" opacity=".8"/>
+          <polygon points="245,100 380,165 515,100 515,97 245,97" fill="#e0d4bb"/>
+          <!-- envelope bottom flap lines -->
+          <line x1="245" y1="280" x2="380" y2="200" stroke="#c9bfae" stroke-width="1" opacity=".5"/>
+          <line x1="515" y1="280" x2="380" y2="200" stroke="#c9bfae" stroke-width="1" opacity=".5"/>
+          <!-- letter inside (peeking out) -->
+          <rect x="268" y="88" width="224" height="140" rx="2" fill="#f5efe3" opacity=".9"/>
+          <!-- letter lines -->
+          <line x1="288" y1="110" x2="472" y2="110" stroke="#c9bfae" stroke-width="1.2"/>
+          <line x1="288" y1="124" x2="472" y2="124" stroke="#c9bfae" stroke-width="1.2"/>
+          <line x1="288" y1="138" x2="430" y2="138" stroke="#c9bfae" stroke-width="1.2"/>
+          <line x1="288" y1="152" x2="455" y2="152" stroke="#c9bfae" stroke-width="1.2"/>
+          <line x1="288" y1="166" x2="410" y2="166" stroke="#c9bfae" stroke-width="1.2"/>
+          <!-- red wax seal -->
+          <circle cx="380" cy="197" r="16" fill="#c0392b" opacity=".9"/>
+          <text x="380" y="202" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#f5efe3" font-weight="bold">I</text>
+          <!-- stars -->
+          <circle cx="100" cy="30" r="1.2" fill="#f5efe3" opacity=".5"/>
+          <circle cx="180" cy="18" r="1" fill="#f5efe3" opacity=".4"/>
+          <circle cx="620" cy="25" r="1.2" fill="#f5efe3" opacity=".5"/>
+          <circle cx="700" cy="40" r="1" fill="#f5efe3" opacity=".4"/>
+          <circle cx="650" cy="15" r=".8" fill="#f5efe3" opacity=".6"/>
+          <circle cx="120" cy="50" r=".8" fill="#f5efe3" opacity=".3"/>
+          <!-- caption -->
+          <text x="380" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#c9bfae" letter-spacing="3" opacity=".6">LEO TODO LO QUE LLEGA · ANDORRA</text>
+        </svg>
+      </div>
+
+      <p class="page-intro">No soy rápido respondiendo. A veces tardo días. Pero leo todo lo que llega. Si algo de lo que escribo te ha resonado, me alegra saberlo. Si quieres hablar de cosplay, de voleibol o de cualquier otra cosa, bienvenido.</p>
+
+      <div class="section-title">Formulario de contacto</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" placeholder="tu@correo.com"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="asunto">Asunto</label>
+        <select id="asunto">
+          <option value="">Selecciona un tema…</option>
+          <option>Cosplay — pregunta o colaboración</option>
+          <option>Voleibol — recuerdos o comentarios</option>
+          <option>Reflexiones — algo que me quiero contar</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" placeholder="Escribe lo que quieras decirme…"></textarea>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        <span class="btn-text">Enviar mensaje →</span>
+        <span class="spinner"></span>
+      </button>
+
+      <div class="msg success" id="successMsg">
+        ✓ Mensaje enviado. Gracias por escribir. Te respondo cuando pueda.
+      </div>
+      <div class="msg error" id="errorMsg">
+        ✗ Algo ha fallado al enviar el mensaje. Inténtalo de nuevo en unos segundos.
+      </div>
+    </main>
+
+    <aside>
+      <div class="widget">
+        <div class="section-title">Información</div>
+        <div class="info-block">
+          <span class="info-label">Ubicación</span>
+          <span class="info-val">Andorra</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Disponibilidad</span>
+          <span class="info-val">Respondo cuando puedo. No siempre rápido.</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Idiomas</span>
+          <span class="info-val">Castellano · Català</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Temas preferidos</span>
+          <span class="info-val">Cosplay · Anime · Voleibol · Salud mental</span>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="section-title">Explorar el blog</div>
+        <div class="tags">
+          <a href="index.html" class="tag">Inicio</a>
+          <a href="voleibol.html" class="tag">Voleibol</a>
+          <a href="cosplay.html" class="tag">Cosplay</a>
+          <a href="reflexiones.html" class="tag">Reflexiones</a>
+          <a href="sobre-mi.html" class="tag">Sobre mí</a>
+        </div>
+      </div>
+      <div style="background:var(--cream);border:1px solid var(--border);padding:24px;">
+        <p style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic;line-height:1.7;color:var(--ink);">"No busco seguidores. Busco personas que entiendan que las vidas raras también merecen ser contadas."</p>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px;">— I. V. Nieves</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <strong>Iker Viña Nieves</strong> · Blog Personal · Andorra<br/>
+  <span style="font-size:10px;margin-top:6px;display:block;letter-spacing:.08em;text-transform:none;font-style:italic;">Una vida rara es, aun así, una vida plena.</span>
+</footer>
+
+<script>
+  // Inicializar EmailJS con la Public Key
+  emailjs.init("DJ7lvfz1yGfsHEujg");
+
+  async function handleSubmit() {
+    const btn     = document.getElementById('submitBtn');
+    const success = document.getElementById('successMsg');
+    const error   = document.getElementById('errorMsg');
+
+    const nombre  = document.getElementById('nombre').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const asunto  = document.getElementById('asunto').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    // Ocultar mensajes previos
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    // Validación básica
+    if (!nombre || !email || !mensaje) {
+      error.textContent = '✗ Por favor, rellena al menos el nombre, el correo y el mensaje.';
+      error.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      error.textContent = '✗ El correo electrónico no parece válido.';
+      error.style.display = 'block';
+      return;
+    }
+
+    // Estado de carga
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    try {
+      await emailjs.send(
+        "service_gq5258r",    // Service ID
+        "template_dy275u4",   // Template ID
+        {
+          nombre:  nombre,
+          email:   email,
+          asunto:  asunto || "Sin asunto",
+          mensaje: mensaje
+        }
+      );
+
+      // Éxito
+      success.style.display = 'block';
+      document.getElementById('nombre').value  = '';
+      document.getElementById('email').value   = '';
+      document.getElementById('asunto').value  = '';
+      document.getElementById('mensaje').value = '';
+
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      error.textContent = '✗ No se pudo enviar el mensaje (error ' + (err.status || '') + '). Inténtalo de nuevo.';
+      error.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  }
+</script>
+</body>
+</html>
